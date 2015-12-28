@@ -4,23 +4,23 @@ Zonal statistics with point cloud
 
 :Author: Luca Delucchi
 :Contact: luca.delucchi@fmach.it
-:Date: 22/12/2016
+:Date: 28/12/2015
 
 Introduction
 -----------------
-Sometimes it is useful to get information from a subset of the point cloud
+Sometimes it is useful to obtain information from a subset of the point cloud
 input data. This tutorial describes a method to get statistic about
-the point cloud data contained into polygonal features. This is similar to
-a zonal statistics using cloud point.
+the point cloud data contained in polygonal features. This is similar to
+a zonal statistics using point cloud.
 
 Requirements
 -----------------
-To run this tutorial it is required to have installed PDAL, with its
+To run this tutorial it is required to have PDAL along with its
 `Python package <https://pypi.python.org/pypi/PDAL>`_ and the
-Python libraries `numpy`_, `GDAL`_, `xml.etree`_.
+Python libraries `numpy`_, `GDAL`_, `xml.etree`_ installed.
 
-This tutorial utilizes a Trentino dataset, it includes a LAZ file and a
-shapefile. You can download it from
+This tutorial utilizes a Trentino (Italy) dataset, it includes a LAZ file
+and a SHAPE file. You can download it from
 .. TODO add link
 
 Approach
@@ -31,9 +31,9 @@ used to get the point cloud inside the feature boundary and after this
 the statistics are computed.
 
 To do this some lines of Python code are required. The first step is to define
-the statistics to calculate, most of them are already present in `numpy`_,
-if you are looking for more complex methods you can also search in `scipy`_.
-If you have to define your own method you have to define a Python function as
+the statistic to calculate, most of them are already present in `numpy`_.
+If you are looking for more complex methods you can also search in `scipy`_.
+If you prefer to define your own method you will define a Python function as follows
 
 .. code-block:: python
 
@@ -212,8 +212,8 @@ stats
     # when cycle is finished destroy the datasource to save it
     newdata.Destroy()
 
-The script it is finished and ready to be run, you have just to put all
-together in a single file and run it in the same directory where you put
+Once your script is completed and ready to be run, you just have to put all pieces
+together into a single file and run it in the same directory where you stored
 the input data.
 
 .. _`numpy`: http://www.numpy.org/
