@@ -4,24 +4,24 @@ Calculate Canopy Height Model (CHM)
 
 :Author: Luca Delucchi
 :Contact: luca.delucchi@fmach.it
-:Date: 22/12/2016
+:Date: 28/12/2015
 
 Introduction
 -----------------
 
 This tutorial describes how to calculate the Canopy Height Model (CHM).
-For each point of your point cloud dataset it calculate a new height as
-result of subtraction of the point's height with the value of a
-`Digital Terrain Model`_ (DTM).
-The tutorial describes how to create a pipeline to get the CHM point
-cloud file.
+For each point in your point cloud dataset it calculates a new height value
+as result of the subtraction of the point's height from the respective value
+of a provided `Digital Terrain Model`_ (DTM).
+The tutorial describes how to create a PDAL pipeline in order to retrieve the
+CHM point cloud file.
 
 Requirements
 -----------------
-To run this tutorial it is required to have installed PDAL and the
-Python libraries `numpy`_ and `GDAL`_.
+To run this tutorial it is required to have PDAL and the Python libraries
+`numpy`_ and `GDAL`_ installed.
 
-This tutorial utilizes a Trentino dataset, it includes a LAZ file and a
+This tutorial utilizes a Trentino (Italy) dataset; it includes a LAZ file and a
 DTM tif file. You can download it from
 .. TODO add link
 
@@ -29,27 +29,28 @@ DTM tif file. You can download it from
    :scale: 50%
    :align: center
 
-   The input data: a forest area in Trentino
+   The input data: a forested area in Trentino, Italy.
 
 Approach
 ---------------
-To calculate the CHM it is required to link three different operation.
+To calculate the CHM it is required to chain three different operations.
 
 The first operation is to cut the input LAS file according to the DTM,
-for this it us the :ref:`filters.crop`. In the crop filter it is
-possible to use or a bounding box or a polygon as input. This step is
-really useful specially if the two input files have different extension.
-If the DTM is smaller of LAS then the process can gain a lot time.
+for this use the :ref:`filters.crop`. In the crop filter it is
+possible to use either a bounding box or a polygon as input. This step is
+really useful especially if the two input files have different extensions.
+If the DTM is smaller than the LAS file then the process will be performed
+in much less time.
 
 The second operation is the real analysis to calculate the CHM using a
-:ref:`filters.programmable`. For each point it get the value of DTM,
-using GDAL Python library, for the point's coordinates and save the new
+:ref:`filters.programmable`. For each point it retrieves the respective DTM value
+by using the GDAL Python library for the point coordinates and save the new
 height.
 
-The last step is to clean the previous output, sometimes, due to unclear
+The last step is to clean up the previous output as sometimes, for yet unclear
 reasons, GDAL is not able to return a value so the new height is set to
 None, with this last step it is going to remove all the points with
-null height. This process run a :ref:`filters.predicate`.
+null height. This process runs a :ref:`filters.predicate`.
 
 Pipeline
 --------------------
@@ -131,7 +132,7 @@ The following code is the complete Pipeline
       </Writer>
     </Pipeline>
 
-To run this code with your own data you have to modify the following
+To run this code with your own data you will have to modify the following
 elements:
 
 * The input LAS data for :ref:`readers.las`
@@ -142,7 +143,7 @@ elements:
 * The output LAS file for :ref:`writers.las`
 
 Of course you can use different :ref:`reader <readers>` or
-:ref:`writer <writers>`
+:ref:`writer <writers>`.
 
 .. _`Digital Terrain Model`: https://en.wikipedia.org/wiki/Digital_elevation_model
 .. _`numpy`: http://www.numpy.org/
